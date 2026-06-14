@@ -1,0 +1,58 @@
+Število točk: 3
+Obvezni del (1,5 t)
+
+Z uporabo programskega jezika Python (Jupyter Notebook ali klasična Python datoteka) in knjižnic pandas, numpy, PIL, scikit-learn ter XGBoost implementirajte osnovno obdelavo podatkov za podani podatkovni zbirki (zbirki iz naloge 1 in 2). Zgradite napovedne modele z uporabo ansambelskih metod in jih ovrednotite z uporabo 5-kratne prečne validacije (5-fold cross-validation).
+
+Cilj naloge je naloge je z uporabo ansambelskih metod zgraditi napovedne modele za problema iz 1. in 2. naloge. Povezava do podatkovnih množic je dostopna na prej omenjenih nalogah.
+Obdelava podatkov naj zajema:
+Postopka obdelave podatkov se lotite na popolnoma enak način kot ste se jih lotili pri prejšnjih dveh nalogah.
+Izgradnja napovednega modela naj zajema:
+
+    Razdelitev podatkovnih zbirk z uporabo 5-kratne prečne validacije (ne uporabljajte "cros_val_score" ali podobnih funkcij iz knjižnic).
+    Gradnjo (učenje) napovednega modela implementirajte z uporabo ansambelskih metod (pri vseh metodah, kjer je mogoče nastavite parameter random_state na vrednost 1234:
+        Za regresijski problem uporabite:
+            Bagging regresor
+            Random forest regresor
+            Adaboost regresor
+            XGBoost regresor
+        Za klasifikacijski problem uporabite:
+            Bagging klasifikator
+            Random forest klasifikator
+            Adaboost klasifikator
+            XGBoost klasifikator
+
+Ovrednotenje napovednega modela naj zajema:
+
+    Pridobivanje napovedane vrednosti z uporabo zgrajenih napovednih modelov za vsak primerek iz množice testnih podatkov, za vsak prečni rez.
+    Izračun sledečih metrik za vsak prečni rez:
+        Regresijski problem:
+            povprečno absolutno napako,
+            povprečna absolutna napaka v odstotkih,
+            povprečno kvadratno napako,
+            vrednost razložene variance
+        Klasifikacijski problem:
+            točnost,
+            utežena F1 vrednost,
+            utežena preciznost,
+            utežen priklic.
+    Primerjava napovednih modelov:
+        Shranite vse vrednosti vseh metrik za posamezen algoritem strojnega učenja.
+        Izračunajte povprečne vrednosti posamezne metrike za posamezen algoritem strojnega učenja glede na vrednosti v prečnih rezih.
+        Za ansambelske metode (posebej za klasifikacijski problem in posebej za regresijski problem) izrišite grafikone kvartilov (angl. boxplot) za vsako izmed izračunanih metrik, pri čemer naj bodo v obeh primerih za vse štiri algoritme strojnega učenja grafikoni kvartilov združeni na eni sliki (skupno torej 8 slik).
+        Izrišite stolpične diagrame za vse povprečne vrednosti posamezne metrike (posebej za klasifikacijski problem in posebej za regresijski problem) uporabljenih ansambelskih metod pri čemer pri klasifikacijskem problemu vključite rezultate pridobljene v nalogi 2, pri regresijskem problemu pa vključite rezultate pridobljene v nalogi 1 (skupno torej 8 slik).
+
+Dodatni del (1,5 t)
+Ansambelske metode iz osnovnega dela naloge uporabite na novih dveh podatkovnih množicah in jih ovrednotite na enak način kot v osnovnem delu.
+Podatkovna množica za regresijski problem je na voljo na tej povezavi, za klasifikacijski problem pa na tej.
+Opomba: Pri regresijski podatkovni množici napovedujete število izposojenih koles, ki je zapisano pod imenom stolpca "available_bike_stands".
+Oddaja naloge
+
+    Oddajte datoteko Jupyter Notebook (.ipynb).
+    Za vse točke je nalogo potrebno zagovoriti do 7. 1. 2026.
+    Pri zagovoru po 7. 1. 2026 velja odbitek 0,5 točke od podane ocene.
+
+	
+agriculture-crops.zip agriculture-crops.zip
+30 avgust 2025, 10:36
+	
+mbajk_dataset.csv mbajk_dataset.csv 

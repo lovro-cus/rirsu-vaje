@@ -1,0 +1,27 @@
+# Virtualno okolje (NE prenasamo - ustvari se na novo na vsakem racunalniku)
+.venv/
+venv/
+env/
+
+# Python predpomnilnik
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS artefakti iz zip arhivov
+__MACOSX/
+.DS_Store
+
+# zacasni dnevniki streznika
+server.log
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code zacasne datoteke
+.claude/

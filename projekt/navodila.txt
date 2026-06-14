@@ -1,0 +1,110 @@
+Vsebina projektne naloge
+
+Cilj projektne naloge je uporabiti in dodatno nadgraditi znanja, ki ste jih osvojili tekom izdelave sprotnih nalog. V sklopu projektne naloge se boste spoprijeli z izzivom regresijskega problema, natančneje z napovedovanjem časovnih vrst. V tem primeru bo šlo za realne meritve kvalitete zraka, vaš cilj pa bo čim natančneje napovedati vrednost parametra pm10.
+
+Podatkovna zbirka je dostopna tukaj.
+Obdelava in procesiranje podatkov
+V proces obdelave vključite vse do sedaj spoznane pristope in metode podatkovnega inženiringa, kar vključuje:
+
+    zapolnitev manjkajočih vrednosti
+    popravljanje izkrivljenosti podatkov
+    ustvarjanje značilnic
+    izbira značilnic
+    standardizacija/normalizacija vrednosti
+    itd.
+
+Opozorilo: podatkov ne agregirajte na večje časovne enote. Torej naj ostanejo na takšnih intervalih kot so.
+ 
+Izgradnja napovednega modela
+
+Izbran problem je potrebno rešiti z uporabo časovnih vrst in rekurentnih nevronskih mrež, pri čemer lahko uporabite kakršnokoli različico (npr. LSTM, GRU, dvosmerni LSTM, kombinacije ipd.).
+
+Velikost časovnega okna si izberete sami, vendar naj ne bo večja od 1 tedna zajetih meritev. Poleg ciljne vrednosti pm10 sami izberite značilnice, ki jih boste vključili v multivariatno časovno vrsto.
+
+Model naj bo naučen na podatkih iz učnega obdobja (prvo leto meritev). Po potrebi si lahko znotraj učnega obdobja sami določite dodatno validacijsko množico za izbiro hiperparametrov.
+
+Končno ovrednotenje uspešnosti naučenega napovednega modela izvedite nad testnimi podatki, pri čemer za ovrednotenje uporabite klasične regresijske metrike: MAE, MAPE, MSE, EVS.
+Razvoj spletne storitve
+Po vzoru iz naloge 7 razvijte spletno storitev, ki omogoča napovedovanje ciljnih vrednosti za podane vhodne podatke. Pripravite torej REST API končno točko (endpoint), glede na spodnjo specifikacijo.
+
+POST: /predict
+V telesu zahtevka prejme podatke v primerni JSON obliki.
+ 
+Odgovor storitve naj bo v sledeči JSON obliki:
+{"prediction": 3.14}
+ 
+
+Razvito spletno storitev testirajte z uporabo orodja Postman ali katero izmed podobnih orodij.
+
+Končno razvito rešitev zapakirajte v obliko Docker slike. Vse potrebne datoteke za učenje napovednega modela ter za zagon spletne storitve kot tudi serializirane modele zapakirajte v zip arhiv, ki ga oddate.
+Ocenjevanje
+
+Pri projektni nalogi se bo ocenjevalo:
+
+    Priprava podatkov
+        Ali je pravilno opravljena?
+        Kako so zapolnjene morebitne manjkajoče vrednosti?
+        Inženiring značilnic?
+        Transformacija podatkov?
+        Standardizacija/normalizacija?
+        Izbira značilnic?
+        Določitev velikosti okna?
+    Izgradnja modela (kompleksnost)
+        Kako ste prišli do te zasnove rekurentne nevronske mreže? (potek razvoja)
+        Na kak način ste prišli do vrednosti učnih parametrov? (preizkušene nastavitve)
+    Razvoj spletne storitve
+        Demonstracija delovanja (pripravite vsaj 3 različne zahtevke)
+        Je storitev zapakirana v Docker sliko?
+
+Za lažji prikaz vašega dela na projektni naloge vse poizkuse obdelave podatkov, učenja modelov, itd. shranjujte in jih združite v skupen jupyter notebook. V nasprotnem primeru, bom težko ocenil, kaj vse ste preizkusili in koliko dela ste vložili v izdelavo projektne naloge.
+
+Za uspešno opravljen zgoraj opisan del projektne naloge je najvišja možna ocena 8. Za višjo oceno je potrebno opraviti dodaten del, ki je predstavljen v nadaljevanju.
+Dodaten del projektne naloge
+
+Poleg osnovne projektne naloge lahko izvedete tudi dodaten del, v katerem uporabite metodo iz znanstvenega članka, za katero je na voljo odprtokodna programska koda (npr. GitHub). Namen tega dela je, da izbrano metodo iz literature za napovedovanje časovnih vrst prilagodite na podatke projektne naloge (PM10 časovne vrste) ter njene rezultate primerjate z vašim modelom iz osnovnega dela.
+
+Dodaten del ni obvezen je pa nujen za višje ocene (9, 10). Brez opravljenega dodatnega dela je najvišja možna ocena pri projektni nalogi 8.
+Izbira članka in metode
+
+Iz seznama ponujenih člankov izberete eno metodo. Za vsak članek bodo navedeni naslov in povezava na stran kjer je povzetek članka ter povezava repozitorij s programsko kodo. Izbiro članka oz. metode označite na podani razpredelnici na povezavi. Vsak članek oz. metoda je lahko izbrana s strani enega študenta. V kolikor bi želeli preizkusiti katero izmed metod, ki je ni na seznamu to storite na način, da v tabelo vnesete naslov članka in povezavo.
+Namestitev in zagon izvorne kode
+
+Klonirajte repozitorij, pripravite okolje ter preverite, da primeri iz repozitorija delujejo na izvirnih podatkih, ki jih metoda predvideva. Ta korak je namenjen temu, da se prepričate, da je okolje pravilno pripravljeno ter da programska koda dejansko deluje.
+Prilagoditev na PM10 podatke
+
+Prilagodite pripravo podatkov tako, da bo model uporabljal podatke projektne naloge. Po potrebi:
+
+    pripravite vmesne skripte za pretvorbo CSV v format, ki ga repo pričakuje
+    nastavite dolžino vhodnega okna in napovednega horizonta skladno z osnovnim delom projektne naloge
+    poskrbite za normalizacijo/standardizacijo, če jo metoda zahteva
+
+Učenje modela in ovrednotenje
+
+Na pripravljenih PM10 podatkih naučite izbrani model. Zaradi časovne zahtevnosti lahko po potrebi zmanjšate število epoch ali dimenzije modela, vendar mora biti eksperiment smiselno nastavljen. Rezultate ovrednotite z enakimi metrikami, kot pri obveznem delu (MAE, MAPE, MSE, EVS) nad testnimi podatki.
+Primerjava rezultatov
+
+Rezultate modela iz literature primerjajte z rezultati vašega osnovnega modela:
+
+    pripravite tabelarično primerjavo metrik (osnovni model vs. metoda iz članka)
+    prikažite vsaj en graf napovedi (prave vs. napovedane vrednosti) za oba modela
+    na kratko komentirajte, v čem so prednosti/slabosti metode iz članka glede na vašo osnovno rešitev (npr. natančnost, stabilnost, čas učenja, kompleksnost implementacije)
+
+Poročilo
+
+Za dodatni del pripravite kratko poročilo, ki naj vsebuje:
+
+    kratek opis izbrane metode in članka (glavne ideje, arhitektura)
+    opis, kako ste prilagodili obstoječo kodo na PM10 podatke
+    opis eksperimentalne zasnove (uporabljene konfiguracije, ključni parametri)
+    rezultate v obliki tabel in grafov (vsaj metrika MAE, MAPE, MSE, EVS)
+    diskusijo in zaključek (ali bi metodo priporočili za tovrstno napoved, v katerih pogojih, kakšne so omejitve ipd.).
+
+  Poročilo za dodatni del oddajte skupaj z ostalo projektno nalogo.
+Oddaja
+
+    Prvi rok za oddajo projektne naloge je 18. 1. 2026 23:55. Naloge oddane po tem roku se ocenijo s 75% ocene.
+    Oddaja mora vsebovati:
+        Izvorno kodo za učenje napovednega modela
+        Izvorno kodo spletne storitve v ključno z naučenimi modeli
+        Definicijo Docker slike
+    V primeru nepopolne oddaje, študent ne more pristopiti k zagovoru projektne naloge.
